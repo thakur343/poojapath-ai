@@ -1,0 +1,53 @@
+{
+  "name": "PoojaPath AI",
+  "short_name": "PoojaPath",
+  "description": "AI-powered Hindu pooja booking. Book a pandit, get mantra guidance, perform sacred rituals.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0500",
+  "theme_color": "#FF6B00",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "categories": ["religion", "lifestyle", "utilities"],
+  "screenshots": [
+    {
+      "src": "/screenshots/home.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "form_factor": "narrow",
+      "label": "PoojaPath Home — Book a Pandit"
+    }
+  ],
+  "icons": [
+    { "src": "/icon-72.png",  "sizes": "72x72",   "type": "image/png" },
+    { "src": "/icon-96.png",  "sizes": "96x96",   "type": "image/png" },
+    { "src": "/icon-128.png", "sizes": "128x128", "type": "image/png" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book a Pandit",
+      "short_name": "Book",
+      "description": "Instantly book a pandit for your pooja",
+      "url": "/book",
+      "icons": [{ "src": "/shortcut-book.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Ask Panditji AI",
+      "short_name": "AI Chat",
+      "description": "Get instant spiritual guidance",
+      "url": "/chat",
+      "icons": [{ "src": "/shortcut-chat.png", "sizes": "96x96" }]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=ai.poojapath.app",
+      "id": "ai.poojapath.app"
+    }
+  ]
+}
