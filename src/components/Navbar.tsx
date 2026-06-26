@@ -35,7 +35,10 @@ export default function Navbar() {
           💎 Pricing
         </button>
       </div>
-      <div style={{ display: "flex", gap: "6px" }}>
+      <div style={{ display: "flex", gap: "6px", alignItems: "center" }}>
+        <Link href="/login" className="nbtn" style={{ background: "rgba(201,146,43,.12)", border: "1px solid rgba(201,146,43,.25)", color: "var(--gl)", borderRadius: "8px", padding: "8px 16px", fontSize: "13px", fontWeight: 600, textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "5px", transition: "all .2s" }}>
+          👤 Login
+        </Link>
         <button className="nbtn nb1" onClick={() => scrollToSection("#form-sec")}>
           Get Mantra — ₹51
         </button>
