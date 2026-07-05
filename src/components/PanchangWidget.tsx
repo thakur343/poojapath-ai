@@ -158,20 +158,42 @@ export default function PanchangWidget() {
         .pw-card {
           margin-top: 8px;
           width: 250px;
-          background: rgba(8,4,2,0.97);
-          border: 1px solid rgba(200,145,60,0.2);
-          border-radius: 20px;
+          background: linear-gradient(135deg, #18100a 0%, #2a1b12 50%, #18100a 100%);
+          border-left: 3px double rgba(200,145,60,0.85);
+          border-right: 3px double rgba(200,145,60,0.85);
+          border-top: none;
+          border-bottom: none;
+          border-radius: 8px;
           padding: 16px;
           backdrop-filter: blur(28px);
-          box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(200,145,60,0.05);
-          transform-origin: top right;
-          transform: scaleY(0) scaleX(0.95);
+          box-shadow: 0 20px 60px rgba(0,0,0,0.8), 0 0 25px rgba(200,145,60,0.18);
+          transform-origin: top center;
+          transform: scaleY(0);
           opacity: 0;
           pointer-events: none;
-          transition: transform 0.35s cubic-bezier(.16,1,.3,1), opacity 0.3s ease;
+          transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s ease;
+          position: relative;
+        }
+        .pw-card::before, .pw-card::after {
+          content: '';
+          position: absolute;
+          left: -14px;
+          right: -14px;
+          height: 12px;
+          background: linear-gradient(to bottom, #5a3c18, #c9922b 25%, #ffeaa7 50%, #c9922b 75%, #5a3c18);
+          border-radius: 6px;
+          box-shadow: 0 3px 8px rgba(0,0,0,0.6);
+          z-index: 100;
+        }
+        /* Cylindrical scroll knobs at both ends of rods */
+        .pw-card::before {
+          top: -3px;
+        }
+        .pw-card::after {
+          bottom: -3px;
         }
         .pw-card.open {
-          transform: scaleY(1) scaleX(1);
+          transform: scaleY(1);
           opacity: 1;
           pointer-events: auto;
         }

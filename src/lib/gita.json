@@ -1,0 +1,226 @@
+{
+  "chapters": [
+    {
+      "chapter_number": 1,
+      "name_sanskrit": "अर्जुनविषादयोग",
+      "name_translation": "Arjuna's Dilemma",
+      "name_hindi": "अर्जुन का शोक",
+      "summary": "Arjuna beholds the opposing armies, becomes overwhelmed with grief and confusion, and refuses to fight, laying down his bow.",
+      "verses": [
+        {
+          "verse_number": 1,
+          "sanskrit": "धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः |\nमामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ||",
+          "transliteration": "dharmakṣetre kurukṣetre samavetā yuyutsavaḥ\nmāmakāḥ pāṇāḍavāścaiva kimakurvata sañjaya",
+          "translation_english": "Dhritarashtra said: O Sanjay, after gathering on the holy field of Kurukshetra, desiring to fight, what did my sons and the sons of Pandu do?",
+          "translation_hindi": "धृतराष्ट्र ने कहा: हे संजय! धर्मभूमि कुरुक्षेत्र में युद्ध की इच्छा से एकत्रित हुए मेरे और पाण्डु के पुत्रों ने क्या किया?",
+          "explanation": "This opening verse sets the stage for the entire Bhagavad Gita. The battlefield Kurukshetra is called 'Dharmakshetra' (field of righteousness), hinting at the spiritual conflict within every human heart between good and evil."
+        }
+      ]
+    },
+    {
+      "chapter_number": 2,
+      "name_sanskrit": "सांख्ययोग",
+      "name_translation": "Sankhya Yoga (The Book of Wisdom)",
+      "name_hindi": "ज्ञान योग",
+      "summary": "Sri Krishna counsels Arjuna to discard grief, introduces the imperishable nature of the Soul (Atman), and explains the path of selfless duty (Karma Yoga).",
+      "verses": [
+        {
+          "verse_number": 20,
+          "sanskrit": "न जायते म्रियते वा कदाचि\nन्नायं भूत्वा भविता वा न भूयः |\nअजो नित्यः शाश्वतोऽयं पुराणो\nन हन्यते हन्यमाने शरीरे ||",
+          "transliteration": "na jāyate mriyate vā kadācin\nnāyaṁ bhūtvā bhavitā vā na bhūyaḥ\najo nityaḥ śāśvato 'yaṁ purāṇo\nna hanyate hanyamāne śarīre",
+          "translation_english": "The soul is never born, nor does it ever die; nor having once existed, does it ever cease to be. It is unborn, eternal, immortal, and timeless. It is not destroyed when the body is destroyed.",
+          "translation_hindi": "आत्मा किसी भी काल में न तो जन्म लेती है और न मरती है, न ही यह उत्पन्न होकर फिर होने वाली है। यह अजन्मी, नित्य, सनातन और पुरातन है, शरीर के मारे जाने पर भी इसका नाश नहीं होता।",
+          "explanation": "Krishna teaches Arjuna that the physical body is merely an outer garment. The true self (Atman) is divine, indestructible, and eternal. Death is an illusion of the physical realm."
+        },
+        {
+          "verse_number": 22,
+          "sanskrit": "वासांसि जीर्णानि यथा विहाय\nनवानि गृह्णाति नरोऽपराणि |\nतथा शरीराणि विहाय जीर्णा\nन्यन्यानि संयाति नवानि देही ||",
+          "transliteration": "vāsāṁsi jīrṇāni yathā vihāya\nnavāni gṛhṇāti naro 'parāṇi\ntathā śarīrāṇi vihāya jīrṇā\nnyanyāni saṁyāti navāni dehī",
+          "translation_english": "As a person sheds worn-out garments and puts on new ones, likewise, the soul casts off worn-out physical bodies and enters new ones.",
+          "translation_hindi": "जैसे मनुष्य पुराने वस्त्रों को त्यागकर नए वस्त्र धारण करता है, वैसे ही जीवात्मा पुराने शरीरों को छोड़कर नए शरीरों में प्रवेश करती है।",
+          "explanation": "An elegant metaphor explaining reincarnation. Just as we change clothes, the soul changes physical forms to continue its journey toward realization."
+        },
+        {
+          "verse_number": 47,
+          "sanskrit": "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन |\nमा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि ||",
+          "transliteration": "karmaṇy-evādhikāras te mā phaleṣu kadācana\nmā karma-phala-hetur bhūr mā te saṅgo 'stv-akarmaṇi",
+          "translation_english": "You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions. Never consider yourself to be the cause of the results of your activities, nor be attached to inaction.",
+          "translation_hindi": "तुम्हारा अधिकार केवल कर्म करने में है, उसके फलों में कभी नहीं। इसलिए तुम कर्मों के फल की वासना वाले मत होओ और तुम्हारी आसक्ति कर्म न करने में भी न हो।",
+          "explanation": "The core doctrine of Nishkama Karma (selfless action). By focusing entirely on the process and offering the results to the divine, one remains free from stress, anxiety, and karmic bondage."
+        }
+      ]
+    },
+    {
+      "chapter_number": 3,
+      "name_sanskrit": "कर्मयोग",
+      "name_translation": "Karma Yoga (The Path of Action)",
+      "name_hindi": "कर्म योग",
+      "summary": "Krishna explains that dynamic action is essential, but it must be performed as a sacrifice (Yajna) for the welfare of others without personal desire.",
+      "verses": [
+        {
+          "verse_number": 19,
+          "sanskrit": "तस्मादसक्तः सततम् कार्यम् कर्म समाचर |\nअसक्तो ह्याचरन्कर्म परमाप्नोति पूरुषः ||",
+          "transliteration": "tasmād asaktaḥ satataṁ kāryaṁ karma samācara\nasakto hyācaran karma param āpnoti pūruṣaḥ",
+          "translation_english": "Therefore, without attachment, constantly perform the work that ought to be done; for by performing work without attachment, a person attains the Supreme.",
+          "translation_hindi": "इसलिए आसक्ति से रहित होकर सदा कर्तव्य कर्म का भलीभांति आचरण करो, क्योंकि आसक्ति रहित होकर कर्म करता हुआ मनुष्य परमात्मा को प्राप्त होता है।",
+          "explanation": "Action is non-negotiable for living, but detachment transforms ordinary labor into worship. This path leads to complete liberation."
+        }
+      ]
+    },
+    {
+      "chapter_number": 4,
+      "name_sanskrit": "ज्ञानकर्मसंन्यासयोग",
+      "name_translation": "Path of Knowledge & Discipline of Action",
+      "name_hindi": "ज्ञान कर्म संन्यास योग",
+      "summary": "Krishna explains divine incarnations (Avataras), the spiritual purpose of Yajna, and how transcendental knowledge burns away all karma.",
+      "verses": [
+        {
+          "verse_number": 7,
+          "sanskrit": "यदा यदा हि धर्मस्य ग्लानिर्भवति भारत |\nअभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम् ||",
+          "transliteration": "yadā yadā hi dharmasya glānir bhavati bhārata\nabhyutthānam adharmasya tadātmanāṁ sṛjāmy aham",
+          "translation_english": "Whenever and wherever there is a decline in righteousness, O Bharat, and a rise in unrighteousness, at that time I manifest myself.",
+          "translation_hindi": "हे भारत! जब-जब धर्म की हानि और अधर्म की वृद्धि होती है, तब-तब मैं अपने रूप को रचता हूँ अर्थात साकार रूप से प्रकट होता हूँ।",
+          "explanation": "The eternal law of divine descent. The Supreme takes form to restore cosmic balance and guide humanity whenever spiritual values decay."
+        }
+      ]
+    },
+    {
+      "chapter_number": 5,
+      "name_sanskrit": "कर्मसंन्यासयोग",
+      "name_translation": "Yoga of Renunciation",
+      "name_hindi": "कर्म संन्यास योग",
+      "summary": "Krishna compares renunciation of action with performance of selfless work, showing that both lead to the same supreme peace when ego is dissolved."
+    },
+    {
+      "chapter_number": 6,
+      "name_sanskrit": "आत्मसंयमयोग",
+      "name_translation": "Yoga of Meditation",
+      "name_hindi": "आत्मसंयम योग",
+      "summary": "Explains Dhyana Yoga (meditation), mind control, moderation in eating/sleeping, and how to stabilize the consciousness like a steady flame.",
+      "verses": [
+        {
+          "verse_number": 5,
+          "sanskrit": "उद्धरेदात्मनात्मानं नात्मानमवसादयेत् |\nआत्मैव ह्यात्मनो बन्धुरात्मैव रिपुरात्मनः ||",
+          "transliteration": "uddhared ātmanātmānaṁ nātmānam avasādayet\nātmaiva hyātmano bandhur ātmaiva ripur ātmanaḥ",
+          "translation_english": "Elevate yourself through your own mind, and do not degrade yourself. The mind can be your greatest friend, and the same mind can be your worst enemy.",
+          "translation_hindi": "मनुष्य को चाहिए कि वह अपने मन के द्वारा अपने आप को संसार-समुद्र से उबारे, स्वयं को अधोगति में न डाले; क्योंकि यह मन ही जीवात्मा का मित्र है और यही शत्रु भी है।",
+          "explanation": "Krishna places the responsibility of spiritual growth entirely on the individual. Mind mastery is the key to liberation, while lack of control leads to self-defeat."
+        }
+      ]
+    },
+    {
+      "chapter_number": 7,
+      "name_sanskrit": "ज्ञानविज्ञानयोग",
+      "name_translation": "Wisdom & Realization",
+      "name_hindi": "ज्ञान विज्ञान योग",
+      "summary": "Krishna describes His material and spiritual energies, the divine play of Maya, and the four kinds of seekers who turn to Him."
+    },
+    {
+      "chapter_number": 8,
+      "name_sanskrit": "अक्षरब्रह्मयोग",
+      "name_translation": "Path of the Imperishable Brahman",
+      "name_hindi": "अक्षर ब्रह्म योग",
+      "summary": "Focuses on the art of dying, how remembrance of the Supreme at the final breath determines the soul's next destination, escaping cosmic rebirth."
+    },
+    {
+      "chapter_number": 9,
+      "name_sanskrit": "राजविद्याराजगुह्ययोग",
+      "name_translation": "The Sovereign Science & Secret",
+      "name_hindi": "राजविद्या राजगुह्य योग",
+      "summary": "Reveals the ultimate mystery of devotion: how the Supreme is immanent yet transcendent, welcoming all sincere souls regardless of past errors.",
+      "verses": [
+        {
+          "verse_number": 22,
+          "sanskrit": "अनन्याश्चिन्तयन्तो मां ये janaḥ paryupāsate |\nteṣāṁ nityābhiyuktānāṁ yoga-kṣemaṁ vahāmy aham",
+          "transliteration": "ananyāś cintayanto māṁ ye janaḥ paryupāsate\nteṣāṁ nityābhiyuktānāṁ yoga-kṣemaṁ vahāmy aham",
+          "translation_english": "For those who always worship Me with undivided devotion, meditating on My transcendental form, I personally carry their needs and preserve what they possess.",
+          "translation_hindi": "जो अनन्य प्रेमी भक्तजन मुझ परमेश्वर का चिन्तन करते हुए निष्काम भाव से भजते हैं, उन नित्य-निरन्तर लगे रहने वाले पुरुषों का योगक्षेम (आवश्यकताओं की पूर्ति और रक्षा) मैं स्वयं वहन करता हूँ।",
+          "explanation": "A divine assurance of ultimate protection. When a devotee surrenders completely, the Supreme assumes full responsibility for their material and spiritual well-being."
+        }
+      ]
+    },
+    {
+      "chapter_number": 10,
+      "name_sanskrit": "विभूतियोग",
+      "name_translation": "Divine Glories",
+      "name_hindi": "विभूति योग",
+      "summary": "Krishna reveals how His infinite power manifests in the finest, greatest, and most radiant elements of creation (the sun, the Ganges, Shiva, and Arjuna)."
+    },
+    {
+      "chapter_number": 11,
+      "name_sanskrit": "विश्वरूपदर्शनयोग",
+      "name_translation": "Vision of the Cosmic Form",
+      "name_hindi": "विश्वरूप दर्शन योग",
+      "summary": "At Arjuna's request, Krishna reveals His awesome, terrifying Vishwaroop (universal form), showing all worlds, gods, and time itself within Him."
+    },
+    {
+      "chapter_number": 12,
+      "name_sanskrit": "भक्तियोग",
+      "name_translation": "Yoga of Devotion",
+      "name_hindi": "भक्ति योग",
+      "summary": "Krishna compares worship of the personal form with the formless divine, outlining the qualities of a devotee who is dearest to Him."
+    },
+    {
+      "chapter_number": 13,
+      "name_sanskrit": "क्षेत्रक्षेत्रज्ञविभागयोग",
+      "name_translation": "Field & Knower of the Field",
+      "name_hindi": "क्षेत्र क्षेत्रज्ञ विभाग योग",
+      "summary": "Distinguishes between the body (field/Kshetra) and the soul (knower of the field/Kshetrajna), showing how to attain liberation through discrimination."
+    },
+    {
+      "chapter_number": 14,
+      "name_sanskrit": "गुणत्रयविभागयोग",
+      "name_translation": "Three Divisions of Material Nature",
+      "name_hindi": "गुणत्रय विभाग योग",
+      "summary": "Explains the three forces of material nature (Gunas): Sattva (purity), Rajas (passion), and Tamas (ignorance), and how to transcend them."
+    },
+    {
+      "chapter_number": 15,
+      "name_sanskrit": "पुरुषोत्तमयोग",
+      "name_translation": "The Supreme Divine Person",
+      "name_hindi": "पुरुषोत्तम योग",
+      "summary": "Compares creation to the inverted Banyan tree, teaches detachment from it, and describes the three Purushas, culminating in the Supreme Lord.",
+      "verses": [
+        {
+          "verse_number": 15,
+          "sanskrit": "सर्वस्य चाहं हृदि सन्निविष्टो\nमत्तः स्मृतिर्ज्ञानमपोहनं च |\nवेदैश्च सर्वैरहमेव वेद्यो\nवेदान्तकृद्वेदविदेव चाहम् ||",
+          "transliteration": "sarvasya cāhaṁ hṛdi sanniviṣṭo\nmattaḥ smṛtir jñānam apohanaṁ ca\nvedaiś ca sarvair aham eva vedyo\nvedānta-kṛd veda-vid eva cāham",
+          "translation_english": "I am seated in the hearts of all living beings. From Me come memory, knowledge, and forgetfulness. I alone am to be known by all the Vedas; indeed, I am the author of the Vedanta and the knower of the Vedas.",
+          "translation_hindi": "मैं ही सब प्राणियों के हृदय में अन्तर्यामी रूप से स्थित हूँ; और मुझसे ही स्मृति, ज्ञान और अपोहन (संशय आदि का नाश) होते हैं। सब वेदों द्वारा मैं ही जानने योग्य हूँ; वेदान्त का कर्ता और वेदों को जानने वाला भी मैं ही हूँ।",
+          "explanation": "Krishna proclaims His omnipresence as the soul's inner guide. All spiritual seeking and intellectual memory originate from this cosmic intelligence."
+        }
+      ]
+    },
+    {
+      "chapter_number": 16,
+      "name_sanskrit": "दैवासुरसम्पद्विभागयोग",
+      "name_translation": "Divine & Demoniac Natures",
+      "name_hindi": "दैवासुर सम्पद् विभाग योग",
+      "summary": "Contrasts divine qualities (compassion, truth, charity) with demoniac traits (greed, anger, arrogance) that bind the soul."
+    },
+    {
+      "chapter_number": 17,
+      "name_sanskrit": "श्रद्धात्रयविभागयोग",
+      "name_translation": "Threefold Division of Faith",
+      "name_hindi": "श्रद्धात्रय विभाग योग",
+      "summary": "Analyzes how our food habits, speech, charity, sacrifices, and general faith are classified under the three Gunas."
+    },
+    {
+      "chapter_number": 18,
+      "name_sanskrit": "मोक्षसंन्यासयोग",
+      "name_translation": "Liberation by Renunciation",
+      "name_hindi": "मोक्ष संन्यास योग",
+      "summary": "A comprehensive summary of the Gita. Krishna advises Arjuna to surrender all duties unto Him and rise to fight, free from fear and sin.",
+      "verses": [
+        {
+          "verse_number": 66,
+          "sanskrit": "सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज |\nअहं त्वा सर्वपापेभ्यो मोक्षयिष्यामी मा शुचः ||",
+          "transliteration": "sarva-dharmān parityajya mām ekaṁ śaraṇaṁ vraja\nahaṁ tvā sarva-pāpebhyo mokṣayiṣyāmi mā śucaḥ",
+          "translation_english": "Abandon all varieties of dharmas and surrender unto Me alone. I shall liberate you from all sinful reactions; do not fear.",
+          "translation_hindi": "सब धर्मों (कर्तव्यों) को त्यागकर केवल मेरी शरण में आओ। मैं तुम्हें सब पापों से मुक्त कर दूँगा, तुम शोक मत करो।",
+          "explanation": "The ultimate verse of absolute surrender (Sharanagati). The Supreme takes responsibility for the devotee's entire destiny, dissolving all sins and moral anxieties."
+        }
+      ]
+    }
+  ]
+}

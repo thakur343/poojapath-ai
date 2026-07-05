@@ -74,7 +74,7 @@ export default function PanditPage() {
       text: `Jai Shri Ram! Main hun Pandit Ji — aapka AI Jyotish Guru. Aaj ${cfg.name} hai, ${cfg.deity} ka pavitra din.\n\nMain aapki madad kar sakta hun:\n• Kundli & Rashifal\n• Vastu & Numerology\n• Vivah Yog & Career\n• Mantra & Remedies\n• Tarot & Palmistry\n\nKaunse vishay par guidance chahiye? Neeche topic select karein ya seedha puchh lijiye!`,
       shloka: `~ Om Namah Shivaya — May ${cfg.deity} guide your path today`,
       type: "bot",
-      topic,
+      topic: topic?.id,
     }]);
   }, [cfg]);
 

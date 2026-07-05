@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -10,12 +10,20 @@ import {
   loginWithGitHub,
   resetPassword,
 } from "@/lib/firebase/auth";
+import { useAuth } from "@/lib/firebase/AuthProvider";
 
 type Tab = "login" | "signup";
 
 export default function LoginPage() {
   const router = useRouter();
+  const { user, loading: authLoading } = useAuth();
 
+  // Redirect if already logged in
+  useEffect(() => {
+    if (!authLoading && user) {
+      router.replace("/");
+    }
+  }, [user, authLoading, router]);
   // ── UI state ──────────────────────────────────────────────
   const [tab,      setTab]      = useState<Tab>("login");
   const [showPass, setShowPass] = useState(false);

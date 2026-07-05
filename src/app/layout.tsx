@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, DM_Sans, Tiro_Devanagari_Hindi } from "next/font/google";
 import "./globals.css";
 import OmCanvas from "@/components/OmCanvas";
+import { AuthProvider } from "@/lib/firebase/AuthProvider";
+import { LanguageProvider } from "@/lib/i18n/LanguageContext";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -188,8 +190,12 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <OmCanvas />
-        {children}
+        <LanguageProvider>
+          <AuthProvider>
+            <OmCanvas />
+            {children}
+          </AuthProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import KundliReportDesign from "@/components/kundli/KundliReportDesign";
 import { generateKundliReport } from "@/lib/kundli/constants";
@@ -39,6 +39,35 @@ export default function KundliPage() {
   const [showMockPay, setShowMockPay] = useState(false);
   const [downloading, setDownloading] = useState(false);
   const reportRef = useRef<HTMLDivElement>(null);
+  const [remedies, setRemedies] = useState<{
+    ruling_planet: string;
+    gemstone: string;
+    deity: string;
+    lucky_color: string;
+    remedies: string[];
+  } | null>(null);
+
+  useEffect(() => {
+    if (report?.moonSign?.english) {
+      fetch("http://localhost:8000/api/kundli/recommend", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          rashi: report.moonSign.english,
+          lagna: report.lagna.english,
+        })
+      })
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (data && data.status === "success") {
+          setRemedies(data);
+        }
+      })
+      .catch(err => console.error("Remedy load error:", err));
+    } else {
+      setRemedies(null);
+    }
+  }, [report]);
 
   const updateField = (field: keyof KundliBirthDetails, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -178,10 +207,16 @@ export default function KundliPage() {
         },
         prefill: {
           name: form.name,
-          email: "seeker@poojapath.ai",
+          email: "",
+          contact: "",  // Intentionally blank — do not autofill phone number
+        },
+        remember_customer: false,
+        readonly: {
+          contact: false,
+          email: false,
         },
         theme: {
-          color: "#E8600A", // spiritual orange theme color
+          color: "#E8600A",
         },
         modal: {
           ondismiss: function () {
@@ -513,6 +548,41 @@ export default function KundliPage() {
                   </button>
                 </div>
               </section>
+            )}
+
+            {remedies && (
+              <div className="w-full max-w-2xl bg-card-bg/60 border border-brd rounded-2xl p-6 backdrop-blur-md mt-6">
+                <h3 className="font-cormorant text-xl font-bold text-gl border-b border-brd/40 pb-2 mb-4 flex items-center gap-2">
+                  <span>🕉️</span> Recommended Vedic Remedies (Upay)
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4 text-xs">
+                  <div className="bg-deep/40 p-3 rounded-lg border border-brd/30">
+                    <div className="text-mut uppercase text-[9px] font-semibold">Ruling Planet</div>
+                    <div className="font-bold text-cream mt-1">{remedies.ruling_planet}</div>
+                  </div>
+                  <div className="bg-deep/40 p-3 rounded-lg border border-brd/30">
+                    <div className="text-mut uppercase text-[9px] font-semibold">Suggested Gemstone</div>
+                    <div className="font-bold text-cream mt-1">{remedies.gemstone}</div>
+                  </div>
+                  <div className="bg-deep/40 p-3 rounded-lg border border-brd/30">
+                    <div className="text-mut uppercase text-[9px] font-semibold">Ishta Devata</div>
+                    <div className="font-bold text-cream mt-1">{remedies.deity}</div>
+                  </div>
+                  <div className="bg-deep/40 p-3 rounded-lg border border-brd/30">
+                    <div className="text-mut uppercase text-[9px] font-semibold">Lucky Color</div>
+                    <div className="font-bold text-cream mt-1">{remedies.lucky_color}</div>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <div className="text-[10px] text-mut uppercase font-semibold">Remedial Actions:</div>
+                  {remedies.remedies.map((rem, idx) => (
+                    <div key={idx} className="flex gap-2 text-xs text-cream/90 bg-deep/20 p-2.5 rounded-xl border border-brd/20">
+                      <span className="text-s font-bold">•</span>
+                      <span>{rem}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
         )}

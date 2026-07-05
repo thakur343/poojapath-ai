@@ -87,6 +87,58 @@ export default function Tools() {
               </Link>
             </div>
           </div>
+
+          <div className="tool-card flex flex-col justify-between">
+            <div>
+              <span className="tool-emoji">📖</span>
+              <div className="tool-name">Shrimad Bhagavad Gita</div>
+              <div className="tool-desc">Read the sacred text of Bhagavad Gita. Browse through chapters, understand deep translations in English and Hindi, and ask Pandit Ji for explanation.</div>
+            </div>
+            <div style={{ marginTop: "16px" }}>
+              <Link href="/gita" className="tool-btn block text-center no-underline font-semibold py-3 rounded-xl bg-s hover:bg-sl text-white shadow-md transition-all">
+                Read Bhagavad Gita 🕉️
+              </Link>
+            </div>
+          </div>
+
+          <div className="tool-card flex flex-col justify-between">
+            <div>
+              <span className="tool-emoji">🪔</span>
+              <div className="tool-name">Virtual Aarti Puja Thal</div>
+              <div className="tool-desc">Select your favorite deity, light virtual diya, ring the bell, shower flowers, and perform Aarti circling by finger/mouse.</div>
+            </div>
+            <div style={{ marginTop: "16px" }}>
+              <Link href="/puja" className="tool-btn block text-center no-underline font-semibold py-3 rounded-xl bg-s hover:bg-sl text-white shadow-md transition-all">
+                Perform Aarti 🪔
+              </Link>
+            </div>
+          </div>
+
+          <div className="tool-card flex flex-col justify-between">
+            <div>
+              <span className="tool-emoji">📱</span>
+              <div className="tool-name">WhatsApp Shloka Card Creator</div>
+              <div className="tool-desc">Generate beautiful morning Sanskrit shloka cards with Custom borders. Share spiritual wisdom instantly on WhatsApp.</div>
+            </div>
+            <div style={{ marginTop: "16px" }}>
+              <Link href="/shloka" className="tool-btn block text-center no-underline font-semibold py-3 rounded-xl bg-s hover:bg-sl text-white shadow-md transition-all">
+                Create Greeting 📱
+              </Link>
+            </div>
+          </div>
+
+          <div className="tool-card flex flex-col justify-between">
+            <div>
+              <span className="tool-emoji">🧭</span>
+              <div className="tool-name">AI Vastu Shastra Scanner</div>
+              <div className="tool-desc">Upload a photo of your room layout or house map. Our AI Vision model will scan directions and placement to suggest remedies.</div>
+            </div>
+            <div style={{ marginTop: "16px" }}>
+              <Link href="/vastu" className="tool-btn block text-center no-underline font-semibold py-3 rounded-xl bg-s hover:bg-sl text-white shadow-md transition-all">
+                Scan Room Layout 🧭
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>

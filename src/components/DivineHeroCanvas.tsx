@@ -204,7 +204,7 @@ export default function DivineHeroCanvas() {
       {/* Fallback radial gradient behind the canvas to ensure rich dark background */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1C0A00] via-[#060302] to-[#000000] opacity-80" />
       
-      <Canvas eventSource={containerRef} camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 2]}>
+      <Canvas eventSource={containerRef as any} camera={{ position: [0, 0, 5], fov: 50 }} dpr={[1, 2]}>
         <Scene />
       </Canvas>
       

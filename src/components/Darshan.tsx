@@ -8,12 +8,12 @@ export default function Darshan() {
   const [selectedName, setSelectedName] = useState("");
 
   const darshanList = [
-    { name: "Kashi Vishwanath", id: "U7Yx4dO_6h4", hi: "काशी विश्वनाथ", loc: "Varanasi, UP", desc: "The Golden Temple of Lord Shiva.", aarti: "Next Aarti: 6:00 PM (Mangala)", live: true, popular: true },
-    { name: "Mahakaleshwar", id: "dQw4w9WgXcQ", hi: "महाकालेश्वर", loc: "Ujjain, MP", desc: "The only south-facing Jyotirlinga.", aarti: "Next Aarti: 4:00 AM (Bhasma)", live: true, popular: false },
-    { name: "Somnath", id: "U7Yx4dO_6h4", hi: "सोमनाथ", loc: "Veraval, Gujarat", desc: "First among the twelve Jyotirlingas.", aarti: "Next Aarti: 7:00 PM (Sandhya)", live: true, popular: false },
-    { name: "Kedarnath", id: "dQw4w9WgXcQ", hi: "केदारनाथ", loc: "Rudraprayag, UK", desc: "The highest Jyotirlinga in the Himalayas.", aarti: "Next Aarti: 6:30 AM (Maha)", live: false, popular: false },
-    { name: "Ram Mandir", id: "U7Yx4dO_6h4", hi: "राम मंदिर", loc: "Ayodhya, UP", desc: "Birthplace of Lord Rama.", aarti: "Next Aarti: 6:30 AM (Shringar)", live: true, popular: true },
-    { name: "Badrinath", id: "dQw4w9WgXcQ", hi: "बद्रीनाथ", loc: "Chamoli, UK", desc: "One of the Chardham pilgrimage sites.", aarti: "Next Aarti: 6:30 AM (Maha)", live: false, popular: false }
+    { name: "Kashi Vishwanath", id: "akev6jIaV5c", hi: "काशी विश्वनाथ", loc: "Varanasi, UP", desc: "The Golden Temple of Lord Shiva.", aarti: "Next Aarti: 6:00 PM (Mangala)", live: true, popular: true },
+    { name: "Mahakaleshwar", id: "J3lL79FoDcU", hi: "महाकालेश्वर", loc: "Ujjain, MP", desc: "The only south-facing Jyotirlinga.", aarti: "Next Aarti: 4:00 AM (Bhasma)", live: true, popular: false },
+    { name: "Somnath", id: "J4z7CIrvsww", hi: "सोमनाथ", loc: "Veraval, Gujarat", desc: "First among the twelve Jyotirlingas.", aarti: "Next Aarti: 7:00 PM (Sandhya)", live: true, popular: false },
+    { name: "Kedarnath", id: "9mVwbHeqglU", hi: "केदारनाथ", loc: "Rudraprayag, UK", desc: "The highest Jyotirlinga in the Himalayas.", aarti: "Next Aarti: 6:30 AM (Maha)", live: true, popular: false },
+    { name: "Ram Mandir", id: "gA_JpsSjySs", hi: "राम मंदिर", loc: "Ayodhya, UP", desc: "Birthplace of Lord Rama.", aarti: "Next Aarti: 6:30 AM (Shringar)", live: true, popular: true },
+    { name: "Badrinath", id: "4njsfQEbrdc", hi: "बद्रीनाथ", loc: "Chamoli, UK", desc: "One of the Chardham pilgrimage sites.", aarti: "Next Aarti: 6:30 AM (Maha)", live: true, popular: false }
   ];
 
   const openModal = (id: string, name: string) => {

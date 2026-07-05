@@ -115,7 +115,7 @@ export default function MantraForm() {
       }
       
       const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_SzDfNB7SatoLK5",
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: orderData.amount,
         currency: "INR",
         name: "PoojaPath AI",
@@ -151,7 +151,12 @@ export default function MantraForm() {
         prefill: {
           name: formData.name,
           email: "",
-          contact: "",
+          contact: "",  // Intentionally blank — do not autofill phone number
+        },
+        remember_customer: false,
+        readonly: {
+          contact: false,
+          email: false,
         },
         theme: {
           color: T.color1 || "#E8600A",
@@ -295,7 +300,7 @@ export default function MantraForm() {
       </div>
 
       {/* ── Right form card ── */}
-      <div className="fcard" style={{
+      <div className="fcard divine-glow-card" style={{
         position:"sticky", top:80, zIndex:1,
         border:`1px solid ${T.color1}30`,
         boxShadow:`0 24px 70px rgba(0,0,0,0.5), 0 0 60px ${T.glow.replace("0.35","0.06")}, inset 0 1px 0 ${T.color1}15`,

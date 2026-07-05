@@ -8,6 +8,7 @@ interface Message {
   shloka?: string;
   type: "user" | "bot";
   isStreaming?: boolean;
+  time: string; // HH:MM format
 }
 
 const DAY_CFG: Record<number, { name: string; deity: string; color: string; emoji: string; greeting: string }> = {
@@ -38,6 +39,8 @@ export default function PanditFloatChat() {
   const day = new Date().getDay();
   const cfg = DAY_CFG[day];
 
+  const now = () => new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit", hour12: true });
+
   // Welcome message on mount
   useEffect(() => {
     setMessages([{
@@ -45,13 +48,16 @@ export default function PanditFloatChat() {
       text: cfg.greeting,
       shloka: "~ Om Gam Ganapataye Namaha",
       type: "bot",
+      time: now(),
     }]);
   }, [cfg.greeting]);
 
-  // Auto-scroll
+  // Auto-scroll only when chat is open
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    if (open) {
+      bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages, open]);
 
   // Stop pulse after open
   useEffect(() => {
@@ -68,9 +74,9 @@ export default function PanditFloatChat() {
   const sendMessage = useCallback(async (text: string) => {
     if (!text.trim() || loading) return;
 
-    const userMsg: Message = { id: Date.now().toString(), text: text.trim(), type: "user" };
+    const userMsg: Message = { id: Date.now().toString(), text: text.trim(), type: "user", time: now() };
     const botId = (Date.now() + 1).toString();
-    const botPlaceholder: Message = { id: botId, text: "", type: "bot", isStreaming: true };
+    const botPlaceholder: Message = { id: botId, text: "", type: "bot", isStreaming: true, time: now() };
 
     setMessages(prev => [...prev, userMsg, botPlaceholder]);
     setInput("");
@@ -338,6 +344,13 @@ export default function PanditFloatChat() {
           margin-top: 4px;
           padding: 0 4px;
         }
+        .pfc-time {
+          font-size: 9.5px;
+          color: rgba(200,175,140,0.35);
+          margin-top: 3px;
+          padding: 0 4px;
+          letter-spacing: 0.2px;
+        }
 
         /* Typing dots */
         .pfc-dots { display: flex; gap: 4px; padding: 10px 14px; }
@@ -482,7 +495,7 @@ export default function PanditFloatChat() {
         <div className="pfc-hd">
           <div className="pfc-avatar">{cfg.emoji}</div>
           <div>
-            <div className="pfc-hd-name">Pandit Ji AI {cfg.emoji}</div>
+            <div className="pfc-hd-name">Pandit Ji {cfg.emoji}</div>
             <div className="pfc-hd-status">
               <span className="pfc-hd-dot" />
               Online • {cfg.deity} ka din
@@ -501,6 +514,7 @@ export default function PanditFloatChat() {
                 {msg.isStreaming && msg.text && <span className="pfc-cursor" />}
               </div>
               {msg.shloka && <div className="pfc-shloka">{msg.shloka}</div>}
+              <div className="pfc-time">{msg.time}</div>
             </div>
           ))}
 

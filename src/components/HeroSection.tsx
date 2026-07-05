@@ -3,14 +3,14 @@
 import React from "react";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
+import { useLang } from "@/lib/i18n/LanguageContext";
 const DivineHeroCanvas = dynamic(() => import("./DivineHeroCanvas"), { ssr: false });
 
 export default function HeroSection() {
+  const { t } = useLang();
   const scrollToSection = (id: string) => {
     const el = document.querySelector(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -27,7 +27,7 @@ export default function HeroSection() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="inline-flex items-center gap-2 bg-[#E8600A]/10 border border-[#E8600A]/20 backdrop-blur-md rounded-full px-5 py-2 text-[11px] text-[#F5841F] font-medium mb-8 tracking-widest uppercase shadow-[0_0_20px_rgba(232,96,10,0.15)]"
           >
-            <span className="text-[14px]">👁️</span> The Most Advanced Spiritual AI
+            <span className="text-[14px]">👁️</span> {t("hero_badge")}
           </motion.div>
           
           <motion.h1 
@@ -36,8 +36,8 @@ export default function HeroSection() {
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="font-cormorant text-[clamp(44px,7.5vw,82px)] font-light leading-[1.06] text-[#FDF0DC]/95 mb-4"
           >
-            Your <em className="text-[#F5841F] italic">Divine</em><br/>
-            <strong className="font-bold bg-gradient-to-br from-[#F2C96E] via-[#E8600A] to-[#F2C96E] text-transparent bg-clip-text drop-shadow-[0_0_30px_rgba(232,96,10,0.3)]">AI Pandit</strong>
+            {t("hero_h1_a")} <em className="text-[#F5841F] italic">{t("hero_h1_b")}</em><br/>
+            <strong className="font-bold bg-gradient-to-br from-[#F2C96E] via-[#E8600A] to-[#F2C96E] text-transparent bg-clip-text drop-shadow-[0_0_30px_rgba(232,96,10,0.3)]">{t("hero_h1_c")}</strong>
           </motion.h1>
           
           <motion.p 
@@ -46,7 +46,7 @@ export default function HeroSection() {
             transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="text-[clamp(14px,1.8vw,17px)] text-[#C8AF8C]/70 font-light leading-[1.75] max-w-[560px] mx-auto mb-10 drop-shadow-md"
           >
-            Personalized Sanskrit mantras, Live Darshan, Kundli insights, and Shubh Muhurat — powered by 5000 years of Vedic wisdom & Silicon Valley precision.
+            {t("hero_sub")}
           </motion.p>
           
           <motion.div 
@@ -70,15 +70,15 @@ export default function HeroSection() {
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
               <span className="relative z-10 flex items-center gap-2">
-                Get Your Mantra 
+                {t("hero_btn1")}
                 <span className="text-[9px] bg-gradient-to-br from-[#FFD700] to-[#DAA520] text-[#1C0A00] px-2 py-[2px] rounded font-extrabold tracking-wider">₹51</span>
               </span>
             </button>
-            <button 
-              className="border-[1.5px] border-[#DAA520]/40 rounded-2xl px-9 py-4 text-[15px] font-semibold cursor-pointer font-sans transition-all duration-300 tracking-wide bg-[#140A00]/60 backdrop-blur-md text-[#F2C96E] hover:border-[#DAA520] hover:shadow-[0_0_40px_rgba(218,165,32,0.2)] hover:-translate-y-1" 
+            <button
+              className="border-[1.5px] border-[#DAA520]/40 rounded-2xl px-9 py-4 text-[15px] font-semibold cursor-pointer font-sans transition-all duration-300 tracking-wide bg-[#140A00]/60 backdrop-blur-md text-[#F2C96E] hover:border-[#DAA520] hover:shadow-[0_0_40px_rgba(218,165,32,0.2)] hover:-translate-y-1"
               onClick={() => scrollToSection('#darshan-sec')}
             >
-              🙏 Watch Live Darshan
+              {t("hero_btn2")}
             </button>
           </motion.div>
         </div>
@@ -86,16 +86,16 @@ export default function HeroSection() {
 
       <div className="flex items-center justify-center gap-8 flex-wrap px-9 py-5 border-y border-[#C8913C]/10 bg-[#080402]/60 backdrop-blur-xl relative z-20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
         <div className="flex items-center gap-2 text-[12px] text-[#C8AF8C]/60 transition-all duration-300 hover:text-[#F2C96E]/90 hover:-translate-y-0.5 cursor-default group">
-          <span className="text-[16px] group-hover:drop-shadow-[0_0_8px_rgba(242,201,110,0.8)] transition-all">⚡</span> 0.2s Inference
+          <span className="text-[16px] group-hover:drop-shadow-[0_0_8px_rgba(242,201,110,0.8)] transition-all">⚡</span> {t("hero_stat1")}
         </div>
         <div className="flex items-center gap-2 text-[12px] text-[#C8AF8C]/60 transition-all duration-300 hover:text-[#F2C96E]/90 hover:-translate-y-0.5 cursor-default group">
-          <span className="text-[16px] group-hover:drop-shadow-[0_0_8px_rgba(242,201,110,0.8)] transition-all">🔒</span> 100% Private
+          <span className="text-[16px] group-hover:drop-shadow-[0_0_8px_rgba(242,201,110,0.8)] transition-all">🔒</span> {t("hero_stat2")}
         </div>
         <div className="flex items-center gap-2 text-[12px] text-[#C8AF8C]/60 transition-all duration-300 hover:text-[#F2C96E]/90 hover:-translate-y-0.5 cursor-default group">
-          <span className="text-[16px] group-hover:drop-shadow-[0_0_8px_rgba(242,201,110,0.8)] transition-all">📜</span> 100k+ Shlokas
+          <span className="text-[16px] group-hover:drop-shadow-[0_0_8px_rgba(242,201,110,0.8)] transition-all">📜</span> {t("hero_stat3")}
         </div>
         <div className="flex items-center gap-2 text-[12px] text-[#C8AF8C]/60 transition-all duration-300 hover:text-[#F2C96E]/90 hover:-translate-y-0.5 cursor-default group">
-          <span className="text-[16px] group-hover:drop-shadow-[0_0_8px_rgba(242,201,110,0.8)] transition-all">🕉️</span> Kashi Scholars Verified
+          <span className="text-[16px] group-hover:drop-shadow-[0_0_8px_rgba(242,201,110,0.8)] transition-all">🕉️</span> {t("hero_stat4")}
         </div>
       </div>
     </>
