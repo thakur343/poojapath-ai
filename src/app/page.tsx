@@ -58,15 +58,11 @@ export default function Home() {
     return () => { clearTimeout(timer); clearTimeout(hideTimer); };
   }, []);
 
-  // First-visit redirect
+  // Always redirect to login if not authenticated
   useEffect(() => {
     if (loading) return;
     if (!user) {
-      const visited = localStorage.getItem("poojapath_visited");
-      if (!visited) {
-        localStorage.setItem("poojapath_visited", "1");
-        router.replace("/login");
-      }
+      router.replace("/login");
     }
   }, [user, loading, router]);
 
