@@ -25,7 +25,7 @@ async function saveUserProfile(user: User) {
   try {
     const language = detectLanguage();
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Kolkata";
-    await fetch("http://localhost:8000/api/user/profile", {
+    await fetch("https://poojapath-backend.onrender.com/api/user/profile", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

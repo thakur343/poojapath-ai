@@ -34,7 +34,7 @@ export default function VastuPage() {
     setResult(null);
 
     try {
-      const res = await fetch("http://localhost:8000/api/vastu/scan-layout", {
+      const res = await fetch("https://poojapath-backend.onrender.com/api/vastu/scan-layout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

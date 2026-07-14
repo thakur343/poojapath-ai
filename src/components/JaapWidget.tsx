@@ -85,7 +85,7 @@ export default function JaapWidget() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const res = await fetch(`http://localhost:8000/api/jaap/stats?email=${encodeURIComponent(userEmail)}`);
+        const res = await fetch(`https://poojapath-backend.onrender.com/api/jaap/stats?email=${encodeURIComponent(userEmail)}`);
         if (res.ok) {
           const data = await res.json();
           setStreak(data.streak);
@@ -181,7 +181,7 @@ export default function JaapWidget() {
     ) {
       // Content Moderation check before counting
       try {
-        const response = await fetch("http://localhost:8000/api/moderation/check", {
+        const response = await fetch("https://poojapath-backend.onrender.com/api/moderation/check", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ text: lastWord })
@@ -252,7 +252,7 @@ export default function JaapWidget() {
       reader.readAsDataURL(blob);
       reader.onloadend = async () => {
         const base64data = reader.result as string;
-        const res = await fetch("http://localhost:8000/api/jaap/verify-pronunciation", {
+        const res = await fetch("https://poojapath-backend.onrender.com/api/jaap/verify-pronunciation", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({

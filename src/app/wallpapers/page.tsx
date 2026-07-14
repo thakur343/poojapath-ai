@@ -43,7 +43,7 @@ export default function WallpapersPage() {
     setPaymentComplete(false);
 
     try {
-      const response = await fetch("http://localhost:8000/api/wallpapers/generate", {
+      const response = await fetch("https://poojapath-backend.onrender.com/api/wallpapers/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ deity_name: deityName })

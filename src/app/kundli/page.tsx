@@ -49,7 +49,7 @@ export default function KundliPage() {
 
   useEffect(() => {
     if (report?.moonSign?.english) {
-      fetch("http://localhost:8000/api/kundli/recommend", {
+      fetch("https://poojapath-backend.onrender.com/api/kundli/recommend", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

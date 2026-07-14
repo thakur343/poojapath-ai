@@ -66,7 +66,7 @@ export default function GuruDrawer({ open, onClose }: Props) {
     setMessages(prev => [...prev, { text: userMsg, type: "user" }]);
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:8000/api/ai/chat", {
+      const res = await fetch("https://poojapath-backend.onrender.com/api/ai/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

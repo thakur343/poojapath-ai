@@ -33,7 +33,7 @@ function getTimeGreeting(): { text: string; emoji: string; color: string } {
 // ── Track session to backend for ML ────────────────────────────────────────────────────
 async function trackSession(email: string, activity: string) {
   try {
-    await fetch("http://localhost:8000/api/user/track-session", {
+    await fetch("https://poojapath-backend.onrender.com/api/user/track-session", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, activity_type: activity }),
@@ -71,7 +71,7 @@ export default function Home() {
     if (user?.email) {
       trackSession(user.email, "homepage");
       // Fetch ML score for personalized CTA
-      fetch(`http://localhost:8000/api/user/score/${encodeURIComponent(user.email)}`)
+      fetch(`https://poojapath-backend.onrender.com/api/user/score/${encodeURIComponent(user.email)}`)
         .then(r => r.json())
         .then(data => setUserScore({ tier: data.tier, cta: data.cta }))
         .catch(() => {});

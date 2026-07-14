@@ -71,7 +71,7 @@ English Translation:
     setChatMessages([{ role: "user", content: `Pandit Ji, please explain Bhagavad Gita Chapter ${chapter.chapter_number}, Verse ${selectedVerse.verse_number} to me.` }]);
 
     try {
-      const response = await fetch("http://localhost:8000/api/ai/chat", {
+      const response = await fetch("https://poojapath-backend.onrender.com/api/ai/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -105,7 +105,7 @@ English Translation:
         content: m.content
       }));
 
-      const response = await fetch("http://localhost:8000/api/ai/chat", {
+      const response = await fetch("https://poojapath-backend.onrender.com/api/ai/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

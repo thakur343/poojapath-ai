@@ -98,7 +98,7 @@ export default function JaapPage() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const res = await fetch(`http://localhost:8000/api/jaap/stats?email=${encodeURIComponent(userEmail)}`);
+        const res = await fetch(`https://poojapath-backend.onrender.com/api/jaap/stats?email=${encodeURIComponent(userEmail)}`);
         if (res.ok) {
           const data = await res.json();
           setTotalChants(data.total_chants);
@@ -171,7 +171,7 @@ export default function JaapPage() {
   // Sync / Save Jaap Session to Backend
   const saveJaapSession = async (chantCount: number) => {
     try {
-      const res = await fetch("http://localhost:8000/api/jaap/save", {
+      const res = await fetch("https://poojapath-backend.onrender.com/api/jaap/save", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -248,7 +248,7 @@ export default function JaapPage() {
     ) {
       // Content Moderation check
       try {
-        const response = await fetch("http://localhost:8000/api/moderation/check", {
+        const response = await fetch("https://poojapath-backend.onrender.com/api/moderation/check", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ text: lastWord })

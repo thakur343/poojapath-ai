@@ -109,7 +109,7 @@ export default function PanditPage() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8000/api/ai/chat/stream", {
+      const res = await fetch("https://poojapath-backend.onrender.com/api/ai/chat/stream", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
