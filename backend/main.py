@@ -270,18 +270,25 @@ async def ai_chat(request: ChatRequest):
         except Exception as e:
             print("Groq Error:", e)
 
-    # 2. Try Ollama
+    # 2. Try Gemini as fallback
     if not response_text:
-        ollama_url = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
-        ollama_model = os.getenv("OLLAMA_MODEL", "llama3")
-        try:
-            async with httpx.AsyncClient(timeout=30.0) as client:
-                r = await client.post(ollama_url, json={"model": ollama_model, "messages": messages_payload, "stream": False})
-                if r.status_code == 200:
-                    response_text = r.json()["message"]["content"]
-                    source = f"Ollama ({ollama_model})"
-        except Exception as e:
-            print("Ollama Error:", e)
+        gemini_api_key = os.getenv("GEMINI_API_KEY")
+        if gemini_api_key:
+            try:
+                # Build simple prompt from messages
+                user_msg = request.message
+                system_msg = system_prompt
+                async with httpx.AsyncClient(timeout=30.0) as client:
+                    r = await client.post(
+                        f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={gemini_api_key}",
+                        json={"contents": [{"parts": [{"text": f"{system_msg}\n\nUser: {user_msg}"}]}]},
+                    )
+                    if r.status_code == 200:
+                        data = r.json()
+                        response_text = data["candidates"][0]["content"]["parts"][0]["text"]
+                        source = "Gemini 2.0 Flash"
+            except Exception as e:
+                print("Gemini Error:", e)
 
     # 3. Fallback
     if not response_text:
@@ -333,27 +340,29 @@ async def ai_chat_stream(request: ChatRequest):
             yield f"data: {json.dumps({'token': 'Kshama karein, thodi der mein dobara prayas karein.'})}\n\n"
             yield "data: [DONE]\n\n"
 
-    async def ollama_stream():
-        ollama_url = os.getenv("OLLAMA_URL", "http://localhost:11434/api/chat")
-        ollama_model = os.getenv("OLLAMA_MODEL", "llama3")
-        try:
-            async with httpx.AsyncClient(timeout=60.0) as client:
-                async with client.stream("POST", ollama_url, json={"model": ollama_model, "messages": messages_payload, "stream": True}) as r:
-                    async for line in r.aiter_lines():
-                        if line:
-                            try:
-                                data = json.loads(line)
-                                token = data.get("message", {}).get("content", "")
-                                if token:
-                                    yield f"data: {json.dumps({'token': token})}\n\n"
-                                if data.get("done"):
-                                    break
-                            except Exception:
-                                pass
+    async def gemini_stream():
+        gemini_api_key = os.getenv("GEMINI_API_KEY")
+        if not gemini_api_key:
+            yield f"data: {json.dumps({'token': 'Kshama karein, AI service unavailable. GEMINI_API_KEY not set.'})}\n\n"
             yield "data: [DONE]\n\n"
+            return
+        try:
+            user_msg = request.message
+            async with httpx.AsyncClient(timeout=30.0) as client:
+                r = await client.post(
+                    f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={gemini_api_key}",
+                    json={"contents": [{"parts": [{"text": f"{system_prompt}\n\nUser: {user_msg}"}]}]},
+                )
+                if r.status_code == 200:
+                    text = r.json()["candidates"][0]["content"]["parts"][0]["text"]
+                    # Stream word by word
+                    for word in text.split(" "):
+                        yield f"data: {json.dumps({'token': word + ' '})}\n\n"
+                    yield "data: [DONE]\n\n"
+                else:
+                    raise Exception(f"Gemini error: {r.text}")
         except Exception as e:
-            print("Ollama Stream Error:", e)
-            # Fallback static message streamed word by word
+            print("Gemini Stream Error:", e)
             fallback = (
                 f"Jai Shri Ram! Is waqt network mein takleef hai. "
                 f"{deity} aapka bhala kare!\n"
