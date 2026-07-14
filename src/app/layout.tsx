@@ -188,6 +188,20 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
         />
+        {/* ── GOOGLE ANALYTICS 4 ────────────────────────────────────────── */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KTLHGZQ4LJ" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-KTLHGZQ4LJ', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
       </head>
       <body className="antialiased">
         <LanguageProvider>
