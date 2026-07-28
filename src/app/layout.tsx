@@ -4,6 +4,9 @@ import "./globals.css";
 import OmCanvas from "@/components/OmCanvas";
 import { AuthProvider } from "@/lib/firebase/AuthProvider";
 import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+import { Analytics } from "@/components/Analytics";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -29,91 +32,100 @@ const tiro = Tiro_Devanagari_Hindi({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://poojapath.ai";
 const siteName = "PoojaPath AI";
 const siteDescription =
-  "AI-powered Hindu pooja booking platform. Book a pandit, get personalised mantra guidance from Panditji AI, and perform sacred rituals from anywhere in India.";
+  "PoojaPath AI — India #1 AI-powered online pooja booking platform. Book certified pandit at home, get AI mantra guidance, free Janam Kundli, Digital Jaap counter & live temple darshan. Serving all cities in India. Starting ₹51 only.";
 
 // ─── ROOT METADATA (used by every page unless overridden) ────────────────────
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
-  // ── TITLE TEMPLATE ─────────────────────────────────────────────────────────
+  // ── TITLE TEMPLATE ──────────────────────────────────────────────────────────
   title: {
-    default: `${siteName} — Book Pandit Online | AI Pooja Guidance`,
-    template: `%s | ${siteName}`,
+    default: "PoojaPath AI — Book Pandit Online | Free Kundli | AI Mantra | Online Puja Booking India",
+    template: `%s | PoojaPath AI — Online Pooja Booking`,
   },
 
-  // ── DESCRIPTION ────────────────────────────────────────────────────────────
+  // ── DESCRIPTION ─────────────────────────────────────────────────────────────
   description: siteDescription,
 
-  // ── KEYWORDS (long-tail + trending spiritual + AI angle) ───────────────────
+  // ── KEYWORDS — targeting all competitor searches + high-volume terms ────────
   keywords: [
-    "book pandit online",
-    "online pooja booking",
-    "AI pooja guidance",
-    "Hindu rituals online",
-    "pandit at home",
-    "pooja path AI",
-    "puja booking app India",
-    "online katha booking",
-    "Satyanarayan pooja booking",
-    "Griha pravesh pandit",
-    "Navratri pooja online",
-    "AI spiritual guidance",
-    "mantra guidance AI",
-    "Hindu festival rituals",
-    "online havan booking",
-    "panditji AI chat",
-    "sacred rituals app",
-    "pooja samagri online",
-    "vedic astrology AI",
-    "virtual pooja India",
+    // Brand & product terms
+    "poojapath", "poojapath ai", "pooja path ai", "poojapath.ai",
+    // Competitor overlap — same searches as poojapaath.in, pujapath.live etc
+    "online pooja booking", "online puja booking", "book pandit online",
+    "online pandit booking", "pandit booking app india", "puja booking india",
+    "pujapath", "pooja paath online", "online hawan booking", "online katha booking",
+    // High-volume Hindi searches
+    "ऑनलाइन पूजा बुकिंग", "पंडित बुकिंग", "ऑनलाइन पंडित",
+    "पूजा पाठ ऑनलाइन", "मंत्र जाप", "जन्म कुंडली",
+    // Specific puja types
+    "Satyanarayan pooja booking", "Griha Pravesh pandit", "Navratri pooja online",
+    "Ganesh puja online", "Durga puja booking", "Shiv puja online",
+    "Hanuman puja online", "Lakshmi puja booking", "online havan booking",
+    "mundan ceremony pandit", "naamkaran pandit online", "vivah muhurat pandit",
+    // Features — AI & Tech angle
+    "AI pooja guidance", "AI mantra generator", "AI pandit chat",
+    "free kundli online", "janam kundli free", "online kundli maker",
+    "digital jaap counter", "mantra jaap counter online", "vedic astrology AI",
+    "vastu shastra online", "bhagavad gita AI", "mantra audio online",
+    // City-specific (high traffic)
+    "pandit booking delhi", "pandit booking mumbai", "pandit booking bangalore",
+    "pandit booking hyderabad", "pandit booking pune", "pandit booking jaipur",
+    "pandit booking varanasi", "pandit booking ahmedabad", "pandit booking kolkata",
+    // Long-tail high-intent
+    "book pandit at home", "certified vedic pandit online", "pandit for pooja at home",
+    "online temple darshan", "live aarti online", "virtual pooja india",
+    "NRI pooja booking", "online pooja for NRI", "pooja abroad online",
   ],
 
-  // ── AUTHORS & PUBLISHER ────────────────────────────────────────────────────
+  // ── AUTHORS & PUBLISHER ─────────────────────────────────────────────────────
   authors: [{ name: "PoojaPath AI", url: siteUrl }],
   creator: "PoojaPath AI",
   publisher: "PoojaPath AI",
 
-  // ── CANONICAL & ALTERNATES ─────────────────────────────────────────────────
+  // ── CANONICAL & ALTERNATES ──────────────────────────────────────────────────
   alternates: {
-    canonical: "/",
+    canonical: siteUrl,
     languages: {
-      "en-IN": "/en",
-      "hi-IN": "/hi",
+      "en-IN": `${siteUrl}/en`,
+      "hi-IN": `${siteUrl}/hi`,
+      "x-default": siteUrl,
     },
   },
 
-  // ── OPEN GRAPH ─────────────────────────────────────────────────────────────
+  // ── OPEN GRAPH ──────────────────────────────────────────────────────────────
   openGraph: {
     type: "website",
     locale: "en_IN",
     url: siteUrl,
-    siteName,
-    title: `${siteName} — Book Pandit Online | AI Pooja Guidance`,
+    siteName: "PoojaPath AI",
+    title: "PoojaPath AI — Book Pandit Online | Free Kundli | AI Mantra Guidance",
     description: siteDescription,
     images: [
       {
-        url: "/og/default.jpg",   // 1200×630 — generate with /api/og
+        url: "/og/default.jpg",
         width: 1200,
         height: 630,
-        alt: "PoojaPath AI — Sacred rituals, simplified by AI",
+        alt: "PoojaPath AI — India's #1 AI-powered Online Pooja Booking Platform",
       },
     ],
   },
 
-  // ── TWITTER / X ────────────────────────────────────────────────────────────
+  // ── TWITTER / X ─────────────────────────────────────────────────────────────
   twitter: {
     card: "summary_large_image",
     site: "@poojapathai",
     creator: "@poojapathai",
-    title: `${siteName} — Book Pandit Online | AI Pooja Guidance`,
+    title: "PoojaPath AI — Book Pandit Online | Free Kundli | AI Mantra",
     description: siteDescription,
     images: ["/og/default.jpg"],
   },
 
-  // ── ROBOTS ─────────────────────────────────────────────────────────────────
+  // ── ROBOTS ──────────────────────────────────────────────────────────────────
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
@@ -123,7 +135,7 @@ export const metadata: Metadata = {
     },
   },
 
-  // ── PWA / APP ───────────────────────────────────────────────────────────────
+  // ── PWA / APP ────────────────────────────────────────────────────────────────
   manifest: "/manifest.json",
   icons: {
     icon: [
@@ -135,20 +147,26 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
   },
 
-  // ── APP-SPECIFIC (iOS Safari, Android) ─────────────────────────────────────
+  // ── APP-SPECIFIC (iOS Safari, Android) ──────────────────────────────────────
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: siteName,
+    title: "PoojaPath AI",
   },
 
-  // ── VERIFICATION (add your real codes here) ────────────────────────────────
+  // ── VERIFICATION ─────────────────────────────────────────────────────────────
+  // Add your Google & Bing verification codes below after getting them
   verification: {
     google: process.env.GOOGLE_SITE_VERIFICATION || "",
-    // bing: "...",
+    other: {
+      // Bing Webmaster Tools verification — get from bing.com/webmasters
+      "msvalidate.01": process.env.BING_SITE_VERIFICATION || "",
+      // Yandex verification
+      "yandex-verification": process.env.YANDEX_SITE_VERIFICATION || "",
+    },
   },
 
-  // ── CATEGORY ───────────────────────────────────────────────────────────────
+  // ── CATEGORY ─────────────────────────────────────────────────────────────────
   category: "religion & spirituality",
 };
 
@@ -171,11 +189,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${dmSans.variable} ${tiro.variable}`}>
       <head>
-        {/* ── PRECONNECT (performance) ─────────────────────────────────── */}
+        {/* ── PRECONNECT (performance) ───────────────────────────────── */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
 
-        {/* ── JSON-LD STRUCTURED DATA ───────────────────────────────────── */}
+        {/* ── JSON-LD STRUCTURED DATA ──────────────────────────── */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -188,20 +206,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
         />
-        {/* ── GOOGLE ANALYTICS 4 ────────────────────────────────────────── */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-KTLHGZQ4LJ" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-KTLHGZQ4LJ', {
-                page_path: window.location.pathname,
-              });
-            `,
-          }}
-        />
       </head>
       <body className="antialiased">
         <LanguageProvider>
@@ -210,6 +214,12 @@ export default function RootLayout({
             {children}
           </AuthProvider>
         </LanguageProvider>
+        {/* ── ANALYTICS (GA4 + Meta Pixel) ───────────────────── */}
+        <Analytics />
+        {/* ── VERCEL ANALYTICS ───────────────────────────────── */}
+        <VercelAnalytics />
+        {/* ── VERCEL SPEED INSIGHTS ─────────────────────────── */}
+        <SpeedInsights />
       </body>
     </html>
   );

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { trackBookingStart } from "@/components/Analytics";
 
 const DAY_THEME: Record<number, {
   name: string; deity: string; emoji: string;
@@ -69,6 +70,10 @@ export default function MantraForm() {
 
   const handleRazorpayPayment = async () => {
     setIsProcessing(true);
+    // Track GA4 event: user initiated mantra booking
+    trackBookingStart("Personalized Mantra", 51);
+    // Also fire a generate_lead event
+    window.gtag?.("event", "generate_lead", { currency: "INR", value: 51, event_category: "mantra_form" });
     try {
       const isScriptLoaded = await loadRazorpay();
       if (!isScriptLoaded) {

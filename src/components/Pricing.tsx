@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { trackBookingStart } from "@/components/Analytics";
 
 interface PricingProps {
   onBookPandit?: () => void;
@@ -37,7 +38,7 @@ export default function Pricing({ onBookPandit }: PricingProps) {
               <li>Digital Jaap Counter</li>
             </ul>
             
-            <button className="price-btn pb1" onClick={() => scrollToSection('#form-sec')}>Get Your Mantra</button>
+            <button className="price-btn pb1" onClick={() => { trackBookingStart("Personalized Mantra", 51); scrollToSection('#form-sec'); }}>Get Your Mantra</button>
           </div>
 
           <div className="price-card pop">
@@ -55,7 +56,7 @@ export default function Pricing({ onBookPandit }: PricingProps) {
               <li>Priority Support</li>
             </ul>
             
-            <button className="price-btn pb2" onClick={onBookPandit || (() => window.location.href='/guru')}>Book AI Pandit</button>
+            <button className="price-btn pb2" onClick={() => { trackBookingStart("AI Pandit Live Pooja", 501); if (onBookPandit) onBookPandit(); else window.location.href='/guru'; }}>Book AI Pandit</button>
           </div>
 
           <div className="price-card">
@@ -73,7 +74,7 @@ export default function Pricing({ onBookPandit }: PricingProps) {
               <li>1 Free AI Pandit Session/Year</li>
             </ul>
             
-            <button className="price-btn pb3">Join Premium Waitlist</button>
+            <button className="price-btn pb3" onClick={() => trackBookingStart("Lifetime Access", 2100)}>Join Premium Waitlist</button>
           </div>
         </div>
       </div>

@@ -13,29 +13,52 @@ const LANGS: { code: Lang; label: string; flag: string; sub: string }[] = [
   { code: "sa", label: "संस्कृत",   flag: "🕉️", sub: "देवभाषा" },
 ];
 
+const NAV_LINKS = [
+  { icon: "🏠", label_key: "nav_home",    href: "/" },
+  { icon: "🧘", label_key: "nav_pandit",  href: "/pandit" },
+  { icon: "📿", label_key: "nav_jaap",    href: "/jaap" },
+  { icon: "📊", label_key: "nav_kundli",  href: "/kundli" },
+];
+
 export default function Navbar() {
   const { user, loading } = useAuth();
   const { lang, setLang, t } = useLang();
   const router = useRouter();
 
-  const [profileOpen, setProfileOpen] = useState(false);
+  const [profileOpen, setProfileOpen]   = useState(false);
   const [langExpanded, setLangExpanded] = useState(false);
-  const dropRef = useRef<HTMLDivElement>(null);
+  const [drawerOpen, setDrawerOpen]     = useState(false);
+  const dropRef  = useRef<HTMLDivElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const scrollToSection = (id: string) => {
-    const el = document.querySelector(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    setDrawerOpen(false);
+    document.body.classList.remove("drawer-open");
+    setTimeout(() => {
+      const el = document.querySelector(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 300);
   };
 
   const handleLogout = async () => {
     setProfileOpen(false);
+    setDrawerOpen(false);
+    document.body.classList.remove("drawer-open");
     await logout();
     router.push("/login");
     router.refresh();
   };
 
-  // Close on outside click
+  const openDrawer = () => {
+    setDrawerOpen(true);
+    document.body.classList.add("drawer-open");
+  };
+  const closeDrawer = () => {
+    setDrawerOpen(false);
+    document.body.classList.remove("drawer-open");
+  };
+
+  // Close on outside click (desktop dropdown)
   useEffect(() => {
     const h = (e: MouseEvent) => {
       if (dropRef.current && !dropRef.current.contains(e.target as Node)) {
@@ -47,7 +70,16 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", h);
   }, []);
 
-  // Hover open / close with small delay
+  // Close drawer on Escape
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeDrawer();
+    };
+    document.addEventListener("keydown", h);
+    return () => document.removeEventListener("keydown", h);
+  }, []);
+
+  // Hover open / close with small delay (desktop)
   const onEnter = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     setProfileOpen(true);
@@ -101,13 +133,8 @@ export default function Navbar() {
           box-shadow: 0 3px 8px rgba(0,0,0,0.6);
           z-index: 10000;
         }
-        /* Cylindrical scroll knobs at both ends of rods */
-        .nav-profile-drop::before {
-          top: -3px;
-        }
-        .nav-profile-drop::after {
-          bottom: -3px;
-        }
+        .nav-profile-drop::before { top: -3px; }
+        .nav-profile-drop::after  { bottom: -3px; }
         .nav-profile-drop.open {
           opacity: 1;
           transform: scaleY(1);
@@ -172,7 +199,6 @@ export default function Navbar() {
           height: 1px; background: rgba(201,146,43,.1);
           margin: 4px 6px;
         }
-        /* Language sub-panel */
         .npd-lang-panel {
           max-height: 0; overflow: hidden;
           transition: max-height .3s ease, opacity .3s ease;
@@ -210,7 +236,6 @@ export default function Navbar() {
           background: rgba(240,80,60,.1);
           color: #f87171;
         }
-        /* Trigger avatar in nav */
         .nav-profile-trigger {
           display: flex; align-items: center; gap: 7px;
           cursor: pointer; padding: 4px 10px 4px 4px;
@@ -228,8 +253,6 @@ export default function Navbar() {
           transition: transform .25s;
         }
         .nav-profile-trigger .caret.up { transform: rotate(180deg); }
-
-        /* Lang pill button (when logged out) */
         .nav-lang-pill {
           display: flex; align-items: center; gap: 5px;
           background: rgba(201,146,43,.1); border: 1px solid rgba(201,146,43,.22);
@@ -258,8 +281,175 @@ export default function Navbar() {
           background: rgba(201,146,43,.15); color: var(--gl);
         }
         .nav-lang-btn.active { font-weight: 700; }
+
+        /* Mobile drawer lang section */
+        .mdrawer-lang-section {
+          background: rgba(201,146,43,.04);
+          border: 1px solid rgba(201,146,43,.1);
+          border-radius: 12px;
+          padding: 12px;
+          margin-top: 4px;
+        }
+        .mdrawer-lang-label {
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: .08em;
+          text-transform: uppercase;
+          color: rgba(201,146,43,.6);
+          padding: 0 4px;
+          margin-bottom: 8px;
+        }
+        .mdrawer-lang-btn {
+          display: flex; align-items: center; gap: 10px;
+          width: 100%; background: transparent; border: none;
+          border-radius: 8px; padding: 9px 10px;
+          font-family: inherit; font-size: 13px; cursor: pointer;
+          transition: all .15s; text-align: left;
+          color: rgba(253,240,220,.65);
+        }
+        .mdrawer-lang-btn:hover, .mdrawer-lang-btn.active {
+          background: rgba(201,146,43,.12);
+          color: var(--gl);
+        }
+        .mdrawer-lang-btn.active { font-weight: 700; }
+        .mdrawer-user-info {
+          display: flex; align-items: center; gap: 10px;
+          padding: 12px 14px;
+          background: rgba(201,146,43,.06);
+          border: 1px solid rgba(201,146,43,.12);
+          border-radius: 12px;
+          margin-bottom: 8px;
+        }
+        .mdrawer-user-name { font-size: 13px; font-weight: 600; color: var(--cream); }
+        .mdrawer-user-email { font-size: 11px; color: rgba(201,146,43,.5); margin-top: 2px; }
       `}</style>
 
+      {/* ── Backdrop overlay ── */}
+      <div
+        className={`mobile-drawer-overlay${drawerOpen ? " open" : ""}`}
+        style={{ display: drawerOpen ? "block" : "none" }}
+        onClick={closeDrawer}
+        aria-hidden="true"
+      />
+
+      {/* ── Mobile Drawer Panel ── */}
+      <div className={`mobile-drawer${drawerOpen ? " open" : ""}`} role="dialog" aria-label="Navigation menu">
+        {/* Header */}
+        <div className="mobile-drawer-header">
+          <div className="nlogo" style={{ fontSize: 18 }}>🪔 PoojaPath<span>.ai</span></div>
+          <button className="mobile-drawer-close" onClick={closeDrawer} aria-label="Close menu">✕</button>
+        </div>
+
+        {/* Body */}
+        <div className="mobile-drawer-body">
+
+          {/* User info (logged in) */}
+          {!loading && user && (
+            <div className="mdrawer-user-info">
+              {photoURL
+                ? <img src={photoURL} alt={displayName} className="npd-avatar" style={{ width: 38, height: 38 }} />
+                : <div className="npd-avatar-init" style={{ width: 38, height: 38, fontSize: 13 }}>{initials}</div>
+              }
+              <div>
+                <div className="mdrawer-user-name">{displayName}</div>
+                <div className="mdrawer-user-email">{email}</div>
+              </div>
+            </div>
+          )}
+
+          {/* Nav Links */}
+          {NAV_LINKS.map(link => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="mobile-nav-link"
+              onClick={closeDrawer}
+            >
+              <span className="mnl-icon">{link.icon}</span>
+              {t(link.label_key as Parameters<typeof t>[0])}
+            </Link>
+          ))}
+
+          <button className="mobile-nav-link" onClick={() => scrollToSection("#darshan-sec")}>
+            <span className="mnl-icon">🛕</span>
+            {t("nav_darshan")}
+          </button>
+          <button className="mobile-nav-link" onClick={() => scrollToSection("#pricing-sec")}>
+            <span className="mnl-icon">💰</span>
+            {t("nav_pricing")}
+          </button>
+          <button className="mobile-nav-link" onClick={() => scrollToSection("#form-sec")}>
+            <span className="mnl-icon">🙏</span>
+            {t("nav_btn1")}
+          </button>
+
+          <div className="mobile-drawer-divider" />
+
+          {/* Profile links for logged-in */}
+          {!loading && user && (
+            <>
+              <Link href="/profile" className="mobile-nav-link" onClick={closeDrawer}>
+                <span className="mnl-icon">👤</span> My Profile
+              </Link>
+              <Link href="/kundli" className="mobile-nav-link" onClick={closeDrawer}>
+                <span className="mnl-icon">📊</span> Janam Kundli
+              </Link>
+              <div className="mobile-drawer-divider" />
+            </>
+          )}
+
+          {/* Language */}
+          <div className="mdrawer-lang-section">
+            <div className="mdrawer-lang-label">🌐 Language</div>
+            {LANGS.map(l => (
+              <button
+                key={l.code}
+                className={`mdrawer-lang-btn${lang === l.code ? " active" : ""}`}
+                onClick={() => setLang(l.code)}
+              >
+                <span style={{ fontSize: 16 }}>{l.flag}</span>
+                <span>{l.label}</span>
+                <span style={{ fontSize: 10, opacity: 0.5, marginLeft: "auto" }}>{l.sub}</span>
+                {lang === l.code && <span style={{ color: "var(--gl)", fontSize: 12 }}>✓</span>}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="mobile-drawer-footer">
+          {!loading && user ? (
+            <button
+              onClick={handleLogout}
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+                width: "100%", padding: "13px", borderRadius: 12,
+                background: "rgba(240,80,60,.08)", border: "1px solid rgba(240,80,60,.2)",
+                color: "#f87171", fontSize: 14, fontWeight: 600,
+                cursor: "pointer", fontFamily: "inherit", transition: "all .2s",
+              }}
+            >
+              🚪 {t("nav_signout")}
+            </button>
+          ) : (
+            <div className="mobile-drawer-cta">
+              <button className="nbtn nb1" onClick={() => scrollToSection("#form-sec")}>{t("nav_btn1")}</button>
+              <button className="nbtn nb2" onClick={() => scrollToSection("#darshan-sec")}>{t("nav_btn2")}</button>
+              <Link href="/login" style={{
+                display: "flex", alignItems: "center", justifyContent: "center",
+                padding: "13px", borderRadius: 12,
+                background: "rgba(201,146,43,.1)", border: "1px solid rgba(201,146,43,.25)",
+                color: "var(--gl)", fontSize: 14, fontWeight: 600,
+                textDecoration: "none", transition: "all .2s",
+              }} onClick={closeDrawer}>
+                {t("nav_login")}
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* ── Main Navbar ── */}
       <nav>
         <div className="nlogo">🪔 PoojaPath<span>.ai</span></div>
 
@@ -302,8 +492,6 @@ export default function Navbar() {
 
                   {/* ── Dropdown panel ── */}
                   <div className={`nav-profile-drop ${profileOpen ? "open" : ""}`}>
-
-                    {/* Profile header */}
                     <div className="npd-header">
                       {photoURL
                         ? <img src={photoURL} alt={displayName} className="npd-avatar" />
@@ -321,20 +509,15 @@ export default function Navbar() {
                     </div>
 
                     <div className="npd-body">
-                      {/* Profile Settings */}
                       <Link href="/profile" className="npd-item" onClick={() => setProfileOpen(false)}>
                         <span className="npd-item-icon">👤</span>
                         <span className="npd-item-label">My Profile</span>
                       </Link>
-
-                      {/* My Orders */}
                       <Link href="/orders" className="npd-item" onClick={() => setProfileOpen(false)}>
                         <span className="npd-item-icon">📜</span>
                         <span className="npd-item-label">My Mantras</span>
                         <span className="npd-item-badge">History</span>
                       </Link>
-
-                      {/* Saved Kundli */}
                       <Link href="/kundli" className="npd-item" onClick={() => setProfileOpen(false)}>
                         <span className="npd-item-icon">📊</span>
                         <span className="npd-item-label">Janam Kundli</span>
@@ -342,7 +525,6 @@ export default function Navbar() {
 
                       <div className="npd-divider" />
 
-                      {/* Language selector */}
                       <button
                         className="npd-item"
                         onClick={() => setLangExpanded(o => !o)}
@@ -352,7 +534,6 @@ export default function Navbar() {
                         <span style={{ fontSize: 10, opacity: 0.5 }}>{langExpanded ? "▲" : "▼"}</span>
                       </button>
 
-                      {/* Language sub-panel */}
                       <div className={`npd-lang-panel ${langExpanded ? "open" : ""}`}>
                         {LANGS.map(l => (
                           <button
@@ -370,14 +551,12 @@ export default function Navbar() {
 
                       <div className="npd-divider" />
 
-                      {/* Help */}
                       <Link href="/pandit" className="npd-item" onClick={() => setProfileOpen(false)}>
                         <span className="npd-item-icon">🧘</span>
                         <span className="npd-item-label">Talk with Pandit Ji</span>
                       </Link>
                     </div>
 
-                    {/* Sign out */}
                     <div className="npd-signout">
                       <button className="npd-signout-btn" onClick={handleLogout}>
                         <span style={{ fontSize: 16 }}>🚪</span>
@@ -389,7 +568,6 @@ export default function Navbar() {
               ) : (
                 /* ════ LOGGED OUT — login + standalone lang pill ════ */
                 <>
-                  {/* Language pill (standalone when logged out) */}
                   <div style={{ position: "relative" }} ref={dropRef}>
                     <button
                       className="nav-lang-pill"
@@ -429,8 +607,21 @@ export default function Navbar() {
             </>
           )}
 
+          {/* Desktop CTA buttons */}
           <button className="nbtn nb1" onClick={() => scrollToSection("#form-sec")}>{t("nav_btn1")}</button>
           <button className="nbtn nb2" onClick={() => scrollToSection("#darshan-sec")}>{t("nav_btn2")}</button>
+
+          {/* Hamburger — only visible on mobile */}
+          <button
+            className={`nav-hamburger${drawerOpen ? " open" : ""}`}
+            onClick={drawerOpen ? closeDrawer : openDrawer}
+            aria-label={drawerOpen ? "Close menu" : "Open menu"}
+            aria-expanded={drawerOpen}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
         </div>
       </nav>
     </>

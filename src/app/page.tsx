@@ -139,13 +139,13 @@ export default function Home() {
             position: 'fixed', top: '70px', left: '50%', transform: 'translateX(-50%)',
             background: 'linear-gradient(135deg, #1a0800ee, #0f0400ee)',
             border: `1px solid ${greeting.color}66`, borderRadius: '50px',
-            padding: '10px 24px', zIndex: 1000, display: 'flex', alignItems: 'center',
-            gap: '10px', backdropFilter: 'blur(12px)',
+            padding: '10px 20px', zIndex: 1000, display: 'flex', alignItems: 'center',
+            gap: '8px', backdropFilter: 'blur(12px)',
             animation: 'fadeInDown 0.5s ease', boxShadow: `0 4px 24px ${greeting.color}33`,
-            whiteSpace: 'nowrap'
+            maxWidth: 'calc(100vw - 32px)', whiteSpace: 'normal', textAlign: 'center',
           }}>
-            <span style={{ fontSize: '18px' }}>{greeting.emoji}</span>
-            <span style={{ color: greeting.color, fontWeight: 700, fontSize: '13px' }}>{greeting.text}</span>
+            <span style={{ fontSize: '16px', flexShrink: 0 }}>{greeting.emoji}</span>
+            <span style={{ color: greeting.color, fontWeight: 700, fontSize: 'clamp(11px,2.5vw,13px)', lineHeight: 1.4 }}>{greeting.text}</span>
           </div>
         )}
 
@@ -153,13 +153,13 @@ export default function Home() {
         {userScore && (userScore.tier === "VIP Devotee" || userScore.tier === "Active Seeker") && (
           <div style={{
             background: 'linear-gradient(135deg, rgba(232,96,10,0.15), rgba(201,146,43,0.1))',
-            borderBottom: '1px solid rgba(201,146,43,0.3)', margin: '0', padding: '12px 24px',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px',
-            flexWrap: 'wrap', zIndex: 9, position: 'relative'
+            borderBottom: '1px solid rgba(201,146,43,0.3)', margin: '0', padding: '10px 16px',
+            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px',
+            flexWrap: 'wrap', zIndex: 9, position: 'relative', textAlign: 'center',
           }}>
-            <span style={{ color: '#F2C96E', fontSize: '13px', fontWeight: 700 }}>🕉️ {userScore.tier}</span>
-            <span style={{ color: 'rgba(253,240,220,0.85)', fontSize: '12px' }}>{userScore.cta}</span>
-            <a href={userScore.tier === "VIP Devotee" ? "/kundli" : "/wallpapers"} style={{ background: 'linear-gradient(135deg, #E8600A, #C9922B)', color: '#fff', textDecoration: 'none', padding: '6px 18px', borderRadius: '20px', fontSize: '11px', fontWeight: 700 }}>Unlock Now</a>
+            <span style={{ color: '#F2C96E', fontSize: 'clamp(11px,2.5vw,13px)', fontWeight: 700 }}>🕉️ {userScore.tier}</span>
+            <span style={{ color: 'rgba(253,240,220,0.85)', fontSize: 'clamp(10px,2vw,12px)' }}>{userScore.cta}</span>
+            <a href={userScore.tier === "VIP Devotee" ? "/kundli" : "/wallpapers"} style={{ background: 'linear-gradient(135deg, #E8600A, #C9922B)', color: '#fff', textDecoration: 'none', padding: '6px 16px', borderRadius: '20px', fontSize: 'clamp(10px,2vw,11px)', fontWeight: 700, whiteSpace: 'nowrap' }}>Unlock Now</a>
           </div>
         )}
 
