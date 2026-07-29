@@ -2139,4 +2139,177 @@ input, select, textarea {
   transform: scale(1.005);
 }
 
+/* ════════════════════════════════════════════════════════════
+   FINAL RESPONSIVE POLISH — covers every section precisely
+   Desktop (>1200) → Laptop (1200) → Tablet (900/768) →
+   Large Phone (600) → Phone (480) → Small (360) → Tiny (320)
+════════════════════════════════════════════════════════════ */
+
+/* ── Section headings — fluid everywhere ── */
+.sec-title {
+  font-size: clamp(26px, 4.5vw, 46px);
+  line-height: 1.12;
+}
+.sec-sub {
+  font-size: clamp(12px, 1.8vw, 15px);
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sec-eye {
+  font-size: clamp(10px, 1.5vw, 12px);
+}
+
+/* ── Form section ── */
+.fsec {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(40px, 6vw, 90px) clamp(16px, 4vw, 24px);
+}
+.fcard { transition: none; } /* disable sticky on mobile — handled per breakpoint */
+
+/* ── Tools grid ── */
+.tool-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+}
+.tool-form input, .tool-form select {
+  font-size: clamp(13px, 2vw, 14px);
+}
+
+/* ── Pricing ── */
+.price-card { padding: clamp(20px, 3vw, 28px) clamp(16px, 2.5vw, 22px); }
+.price-amt  { font-size: clamp(32px, 5vw, 42px); }
+.price-name { font-size: clamp(18px, 3vw, 22px); }
+
+/* ── How It Works steps ── */
+.hstep { padding: clamp(18px, 3vw, 26px) clamp(12px, 2vw, 18px); }
+.hstep-ic { font-size: clamp(24px, 4vw, 32px); }
+.hstep-t { font-size: clamp(14px, 2vw, 17px); }
+
+/* ── Darshan cards ── */
+.dthumb { height: clamp(120px, 16vw, 170px); }
+.dname  { font-size: clamp(13px, 2vw, 16px); }
+
+/* ── Testimonial cards ── */
+.tc-q { font-size: clamp(12px, 1.8vw, 13.5px); }
+
+/* ── Community stories ── */
+.comm-text { font-size: clamp(12px, 1.8vw, 13.5px); }
+
+/* ── Kundli page mobile ── */
+@media(max-width:600px) {
+  .kundli-main { padding: 20px 14px 48px; }
+  .kundli-header { padding: 10px 14px; }
+  .kundli-header h1 { font-size: 18px; }
+  .kundli-row { grid-template-columns: 1fr; }
+  .kundli-report-wrap { border-radius: 12px; }
+}
+
+/* ── Luck & prediction grid ── */
+@media(max-width:480px) {
+  .luck-r { grid-template-columns: repeat(2, 1fr); }
+  .rgrid  { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+  .rbtn .rn  { font-size: 9px; }
+  .rbtn .ren { display: none; }
+  .stats-r { gap: 12px; }
+  .stat-n { font-size: 28px; }
+}
+
+/* ── MantraForm card on small screens ── */
+@media(max-width:480px) {
+  .fcard  { border-radius: 16px; }
+  .ftitle { font-size: clamp(17px, 5vw, 20px); }
+  .fsub   { font-size: 11px; }
+  .sbtn   { padding: 13px; font-size: 13px; border-radius: 12px; }
+  .payln  { font-size: 11px; }
+  .payln.tot { font-size: 14px; }
+  .m-skt  { font-size: 17px; }
+  .chant-r { gap: 6px; }
+}
+
+/* ── Sacred Voices section ── */
+@media(max-width:480px) {
+  .sv-header { padding: 0 14px 28px; }
+  .sv-cta    { padding: 32px 14px 16px; }
+  .sv-cta-btn { font-size: 13px; padding: 11px 20px; }
+  .sv-arrows  { gap: 10px; margin-top: 12px; }
+  .sv-arrow   { width: 36px; height: 36px; font-size: 15px; }
+}
+
+/* ── FAQ section ── */
+@media(max-width:600px) {
+  .faq-item  { padding: 14px 16px; }
+  .faq-q     { font-size: 13px; }
+  .faq-a     { font-size: 12px; }
+}
+
+/* ── Darshan modal mobile ── */
+@media(max-width:480px) {
+  .dmodal-box  { width: 98%; border-radius: 14px; }
+  .dmodal-iframe { height: clamp(220px, 55vw, 340px); }
+  .dmodal-name { font-size: 15px; padding: 10px; }
+}
+
+/* ── Panchang toggle button ── */
+@media(max-width:600px) {
+  .pw-tog { top: 72px; right: 12px; width: 40px; height: 40px; font-size: 15px; }
+}
+
+/* ── Prevent horizontal scroll globally ── */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* ── Images never overflow ── */
+img, svg, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Inputs always usable on mobile ── */
+@media(max-width:600px) {
+  input[type=text], input[type=email], input[type=date],
+  input[type=time], textarea, select {
+    font-size: 16px !important; /* prevents iOS zoom-in on focus */
+  }
+}
+
+/* ── Very tiny screens (320px Galaxy Fold etc.) ── */
+@media(max-width:320px) {
+  .nlogo { font-size: 15px; }
+  .nav-hamburger { width: 36px; height: 36px; }
+  .price-grid { max-width: 100%; }
+  .fcard { padding: 14px 10px; border-radius: 14px; }
+  .sec-title { font-size: 19px; }
+  .mobile-drawer { width: 98vw; }
+  .hero-section { padding: 52px 10px 32px; }
+  .hstep { padding: 14px 10px; }
+}
+
+/* ── PC / Large screens — max-width containers ── */
+@media(min-width:1400px) {
+  .fsec      { max-width: 1200px; }
+  .darshan-in { max-width: 1300px; }
+  .tools-in  { max-width: 1200px; }
+  .testi-in  { max-width: 1200px; }
+  .pricing-in { max-width: 1200px; }
+  .comm-in   { max-width: 1000px; }
+}
+
+/* ── Smooth scrolling & focus rings ── */
+:focus-visible {
+  outline: 2px solid rgba(232,96,10,.6);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Button min tap target (WCAG) ── */
+button, a, [role="button"] {
+  min-height: 36px;
+  touch-action: manipulation;
+}
 
