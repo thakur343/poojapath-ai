@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import PanchangWidget from "@/components/PanchangWidget";
 import HeroSection from "@/components/HeroSection";
@@ -46,8 +45,7 @@ export default function Home() {
   const [greeting, setGreeting] = useState({ text: "", emoji: "🕉️", color: "#C9922B" });
   const [showGreeting, setShowGreeting] = useState(false);
   const [userScore, setUserScore] = useState<{ tier: string; cta: string } | null>(null);
-  const { user, loading } = useAuth();
-  const router = useRouter();
+  const { user } = useAuth(); // page is PUBLIC — no redirect
 
   // Set time-based greeting
   useEffect(() => {
@@ -58,13 +56,8 @@ export default function Home() {
     return () => { clearTimeout(timer); clearTimeout(hideTimer); };
   }, []);
 
-  // Always redirect to login if not authenticated
-  useEffect(() => {
-    if (loading) return;
-    if (!user) {
-      router.replace("/login");
-    }
-  }, [user, loading, router]);
+  // Homepage is PUBLIC — no forced redirect.
+  // Login is only required when user clicks a paid action (payment button in MantraForm).
 
   // Track homepage session + fetch user score
   useEffect(() => {
